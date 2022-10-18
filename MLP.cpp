@@ -47,7 +47,7 @@ MultiLayerPerceptron::MultiLayerPerceptron(vector<int> layers, double bias, doub
 }
 
 void MultiLayerPerceptron::set_weights(vector<vector<vector<double>>> w_init) {
-    for (int i = 1; i < w_init.size(); i++) {
+    for (int i = 0; i < w_init.size(); i++) {
         for (int j = 0; j < w_init[i].size(); j++) {
             network[i+1][j].set_weights(w_init[i][j]);
         }

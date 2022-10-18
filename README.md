@@ -1,6 +1,6 @@
 
 <h1 align="center">
-  Bulding with C++
+  Building Neural Networks with C++
   <br>
 </h1>
 In order to gain a deeper understanding of the structure and training process of neural networks, 
@@ -9,7 +9,7 @@ I developed this software.
 
 ### Description of the project:
 
-* There is a hotel with rooms available for rent
+* There is a 
 
 
 

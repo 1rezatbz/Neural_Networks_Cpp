@@ -77,3 +77,46 @@ vector<double> MultiLayerPerceptron::run(vector<double> x) {
     }
     return values.back();
 }
+double MultiLayerPerceptron::bp(vector<double> x, vector<double> y) {
+    // Backpropagation Steps:
+    // STEP 1: Feed a sample to the network
+    vector<double> outputs = run(x);
+    // STEP 2: Calculated the MSE
+    vector <double> error;
+    double MSE =0.0;
+    for (int i =0; i <y.size();i++){
+        error.push_back(y[i] - outputs[i]);
+        MSE  += error[i] * error[i];
+    }
+    MSE /= layers.back();
+    // STEP 3: Calculated the output error terms
+    for(int i =0; i<outputs.size(); i--){
+        d.back()[i] = outputs[i] * (1- outputs[i]) * (error[i]);
+    }
+    // STEP 4: Calculate the error term of each unit on each layer
+    for (int i = network.size();i>0;i--){
+        for (int h = 0; h < network[i].size(); h++) {
+            double fwd_error = 0.0;
+            for(int k=0; k< layers[i+1];k++){
+                fwd_error += network[i+1][k].weights[h] * d[i+1][k];
+                d[i][h] = values[i][h] *(1-values[i][h]) * fwd_error;
+            }
+        }
+    }
+    // STEP 5&6: Calculated the deltas and update the weights
+    for(int i =1;i<network.size();i++) {
+        for (int j = 0; j < layers[i]; j++){
+            for (int k=0; k<layers[i-1]+1, k++){
+                double delta;
+                if (k==layers[i-1]){
+                    delta = eta * d[i][j] * bias;
+                } else{
+                    delta = eta *d[i][j] * values[i-1][k];
+                }
+                network[i][j].weights[k] += delta;
+            }
+        }
+    }
+
+    return MSE;
+}

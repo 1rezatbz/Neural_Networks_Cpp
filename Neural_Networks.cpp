@@ -25,13 +25,28 @@ int main() {
     MultiLayerPerceptron mlp = MultiLayerPerceptron({2,2,1});  //mlp
     mlp.set_weights({{{-10,-10,15},{15,15,-10}}, {{10,10,-15}}});
     cout << "Hard-coded weights:\n";
-    mlp.print_weight();
 
+    mlp.print_weight();
     cout<< "XOR:" << endl;
     cout <<"0 0 = "<< mlp.run({0,0})[0]<< endl;
     cout <<"0 1 = "<< mlp.run({0,1})[0]<< endl;
     cout <<"1 0 = "<< mlp.run({1,0})[0]<< endl;
     cout <<"0 1 = "<< mlp.run({1,1})[0]<< endl;
+    cout << "\n\n--------Trained XOR Example -------------\n\n";
+    mlp = MultiLayerPerceptron({2,2,1});
+    cout << "--------Traing Neural Network as and XOR Gate ----------\n";
+    double MSE;
+    for (int i =0; i<3000, i++){
+        MSE = 0.0;
+        MSE += mlp.bp({0,0},{0});
+        MSE += mlp.bp({0,1},{1});
+        MSE += mlp.bp({1,0},{1});
+        MSE += mlp.bp({1,1},{0});
+        if (i % 100==0){
+            cout<< "MSE= " << MSE<< endl;
+        }
+    }
+
 
 
 

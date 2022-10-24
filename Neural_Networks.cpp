@@ -8,32 +8,34 @@ int main() {
     srand(time(NULL));
     rand();
 
-    cout << "\n\n--------Logic Gate Example----------------\n\n";
-    cout << "OR";
-    Perceptron *p = new Perceptron(2);
-
+//    cout << "\n\n--------Logic Gate Example----------------\n\n";
+//    cout << "OR";
+//    Perceptron *p = new Perceptron(2);
+//
 //    p->set_weights({10, 10, -15}); //AND
-     p->set_weights({15, 15, -10}); //OR
+////     p->set_weights({15, 15, -10}); //OR
+//
+//    cout << "Gate: " << endl;
+//    cout << p->run({0, 0}) << endl;
+//    cout << p->run({0, 1}) << endl;
+//    cout << p->run({1, 0}) << endl;
+//    cout << p->run({1, 1}) << endl;
 
-    cout << "Gate: " << endl;
-    cout << p->run({0, 0}) << endl;
-    cout << p->run({0, 1}) << endl;
-    cout << p->run({1, 0}) << endl;
-    cout << p->run({1, 1}) << endl;
+//    cout << "\n\n--------HardCoded XOR Example-------------\n\n";
+//    MultiLayerPerceptron mlp = MultiLayerPerceptron({2,2,1});  //mlp
+//    mlp.set_weights({{{-10,-10,15},{15,15,-10}}, {{10,10,-15}}});
+//    cout << "Hard-coded weights:\n";
+//
+//    mlp.print_weight();
+//    cout<< "XOR:" << endl;
+//    cout <<"0 0 = "<< mlp.run({0,0})[0]<< endl;
+//    cout <<"0 1 = "<< mlp.run({0,1})[0]<< endl;
+//    cout <<"1 0 = "<< mlp.run({1,0})[0]<< endl;
+//    cout <<"0 1 = "<< mlp.run({1,1})[0]<< endl;
 
-    cout << "\n\n--------HardCoded XOR Example-------------\n\n";
-    MultiLayerPerceptron mlp = MultiLayerPerceptron({2,2,1});  //mlp
-    mlp.set_weights({{{-10,-10,15},{15,15,-10}}, {{10,10,-15}}});
-    cout << "Hard-coded weights:\n";
 
-    mlp.print_weight();
-    cout<< "XOR:" << endl;
-    cout <<"0 0 = "<< mlp.run({0,0})[0]<< endl;
-    cout <<"0 1 = "<< mlp.run({0,1})[0]<< endl;
-    cout <<"1 0 = "<< mlp.run({1,0})[0]<< endl;
-    cout <<"0 1 = "<< mlp.run({1,1})[0]<< endl;
     cout << "\n\n--------Trained XOR Example -------------\n\n";
-    mlp = MultiLayerPerceptron({2,2,1});
+    MultiLayerPerceptron mlp = MultiLayerPerceptron({2,2,1});
     cout << "--------Traing Neural Network as and XOR Gate ----------\n";
     double MSE;
     for (int i =0; i<3000; i++){
@@ -46,9 +48,15 @@ int main() {
             cout<< "MSE= " << MSE<< endl;
         }
     }
+    cout <<"\n\n Trained weights (Compare to hard-coded weights):\n\n";
+    mlp.print_weight();
+    cout<< "XOR:"<< endl;
+    cout<< "XOR"<< endl;
 
-
-
-
+    cout<< "XOR:" << endl;
+    cout <<"0 0 = "<< mlp.run({0,0})[0]<< endl;
+    cout <<"0 1 = "<< mlp.run({0,1})[0]<< endl;
+    cout <<"1 0 = "<< mlp.run({1,0})[0]<< endl;
+    cout <<"0 1 = "<< mlp.run({1,1})[0]<< endl;
     return 0;
 }

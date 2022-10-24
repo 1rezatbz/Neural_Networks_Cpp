@@ -106,7 +106,7 @@ double MultiLayerPerceptron::bp(vector<double> x, vector<double> y) {
     // STEP 5&6: Calculated the deltas and update the weights
     for(int i =1;i<network.size();i++) {
         for (int j = 0; j < layers[i]; j++){
-            for (int k=0; k<layers[i-1]+1, k++){
+            for (int k=0; k<layers[i-1]+1;k++){
                 double delta;
                 if (k==layers[i-1]){
                     delta = eta * d[i][j] * bias;

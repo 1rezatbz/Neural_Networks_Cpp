@@ -30,7 +30,7 @@ public:
 
 class MultiLayerPerceptron {
 public:
-    MultiLayerPerceptron(vector<int> layers, double bias =1, double eta=0.5);
+    MultiLayerPerceptron(vector<int> layers, double bias =1.0, double eta=0.5);
     void set_weights(vector<vector<vector<double> > > w_init);
     void print_weight();
     vector<double> run(vector<double> x);

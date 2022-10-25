@@ -12,15 +12,19 @@ int main() {
 //    cout << "OR";
 //    Perceptron *p = new Perceptron(2);
 //
+//    //{10,10,-15} #AND
+//    //{15,15,-10}  #OR
+//    //{-15,-15,10}  #NOR
+//    //{-10,-10,15} #NAND
+//
 //    p->set_weights({10, 10, -15}); //AND
 ////     p->set_weights({15, 15, -10}); //OR
-//
 //    cout << "Gate: " << endl;
 //    cout << p->run({0, 0}) << endl;
 //    cout << p->run({0, 1}) << endl;
 //    cout << p->run({1, 0}) << endl;
 //    cout << p->run({1, 1}) << endl;
-
+//
 //    cout << "\n\n--------HardCoded XOR Example-------------\n\n";
 //    MultiLayerPerceptron mlp = MultiLayerPerceptron({2,2,1});  //mlp
 //    mlp.set_weights({{{-10,-10,15},{15,15,-10}}, {{10,10,-15}}});
@@ -34,29 +38,29 @@ int main() {
 //    cout <<"0 1 = "<< mlp.run({1,1})[0]<< endl;
 
 
+    //test code - Trained XOR
     cout << "\n\n--------Trained XOR Example -------------\n\n";
-    MultiLayerPerceptron mlp = MultiLayerPerceptron({2,2,1});
-    cout << "--------Traing Neural Network as and XOR Gate ----------\n";
+    MultiLayerPerceptron mlp = MultiLayerPerceptron({2, 2, 1});
+    cout << "Traing Neural Network as and XOR Gate ...\n";
     double MSE;
-    for (int i =0; i<3000; i++){
+    for (int i = 0; i < 30000; i++) {
         MSE = 0.0;
-        MSE += mlp.bp({0,0},{0});
-        MSE += mlp.bp({0,1},{1});
-        MSE += mlp.bp({1,0},{1});
-        MSE += mlp.bp({1,1},{0});
-        if (i % 100==0){
-            cout<< "MSE= " << MSE<< endl;
+        MSE += mlp.bp({0, 0}, {0});
+        MSE += mlp.bp({0, 1}, {1});
+        MSE += mlp.bp({1, 0}, {1});
+        MSE += mlp.bp({1, 1}, {0});
+        MSE = MSE / 4.0;
+        if (i % 100 == 0) {
+            cout << "MSE= " << MSE << endl;
         }
     }
-    cout <<"\n\n Trained weights (Compare to hard-coded weights):\n\n";
+    cout << "\n\n Trained weights (Compare to hard-coded weights):\n\n";
     mlp.print_weight();
-    cout<< "XOR:"<< endl;
-    cout<< "XOR"<< endl;
 
     cout<< "XOR:" << endl;
     cout <<"0 0 = "<< mlp.run({0,0})[0]<< endl;
     cout <<"0 1 = "<< mlp.run({0,1})[0]<< endl;
     cout <<"1 0 = "<< mlp.run({1,0})[0]<< endl;
-    cout <<"0 1 = "<< mlp.run({1,1})[0]<< endl;
-    return 0;
+    cout <<"1 1 = "<< mlp.run({1,1})[0]<< endl;
+
 }
